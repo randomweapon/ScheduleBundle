@@ -53,7 +53,7 @@ class CronTasksRunCommand extends ContainerAwareCommand
 
                     $output->writeln('<info>SUCCESS</info>');
                 } catch (\Exception $e) {
-                    $output->writeln('<error>ERROR</error>');
+                    $output->writeln('<error>'.$e->getMessage().'</error>');
                 }
 
                 // Persist crontask
@@ -72,7 +72,7 @@ class CronTasksRunCommand extends ContainerAwareCommand
     private function runCommand($string)
     {
         // Split namespace and arguments
-        $namespace = split(' ', $string)[0];
+        $namespace = explode(' ', $string)[0];
 
         // Set input
         $command = $this->getApplication()->find($namespace);

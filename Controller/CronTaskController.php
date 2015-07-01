@@ -21,7 +21,7 @@ class CronTaskController extends Controller
             ->setName('Example asset symlinking task')
             ->setInterval(3600) // Run once every hour
             ->setCommands(array(
-                'assets:install --symlink web'
+                'test:run'
             ));
 
         $em = $this->getDoctrine()->getManager();
@@ -29,5 +29,15 @@ class CronTaskController extends Controller
         $em->flush();
 
         return new Response('OK!');
+    }
+
+    public function saveAction($name, $comment, $interval = 3600)
+    {
+
+    }
+
+    public function outputAction()
+    {
+        return "outputing";
     }
 }
